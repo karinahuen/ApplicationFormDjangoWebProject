@@ -1,0 +1,31 @@
+{% extends "FormDjangoApp/layout.html" %}
+<html>
+<head>
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
+</head>
+<body>
+    <div><a href="home">Home</a></div>
+    {% block content %}
+    <h2>{{title}}</h2>
+    <p class="create_description">{{content}}</p>
+
+    <form action="addrecord/" method="post">
+        {% csrf_token %}
+        First Name:<br>
+        <input name="first">
+        <br><br>
+        Last Name:<br>
+        <input name="last">
+        <br><br>
+        {{ form.as_p }}
+        <br><br>
+        Email Address:<br>
+        <input name="email">
+        <br><br>
+        <button type="button" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}
+</body>
+</html>
